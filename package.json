@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "wrangler dev",
+    "types": "wrangler types"
+  },
+  "type": "module",
+  "packageManager": "pnpm@11.5.1",
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

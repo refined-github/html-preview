@@ -1,0 +1,11 @@
+{
+  "name": "refined-github-html-preview",
+  "compatibility_date": "2026-06-02",
+  "main": "src/main.ts",
+  "assets": {
+    "directory": "public"
+  },
+  "vars": {
+    "HOST": "https://refined-github-html-preview.kidonng.workers.dev/"
+  }
+}
