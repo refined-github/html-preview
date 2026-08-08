@@ -14,7 +14,7 @@ export default {
 
     if (pathname === "/") {
       return Response.redirect(
-        "https://github.com/refined-github/refined-github/wiki/Extended-feature-descriptions#html-preview-link",
+        "https://github.com/refined-github/html-preview",
       );
     }
 
