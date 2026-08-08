@@ -8,7 +8,7 @@ It is manually deployed to `https://refined-github-html-preview.kidonng.workers.
 
 To preview this file:
 
-> https://github.com/spite/explore-with-me/raw/refs/heads/master/index.html
+> https://github.com/spite/explore-with-me/blob/refs/heads/master/index.html
 
 Replace `github.com` with `refined-github-html-preview.kidonng.workers.dev`:
 
