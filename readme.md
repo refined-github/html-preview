@@ -2,4 +2,8 @@
 
 > Cloudflare Workers backend for [Refined GitHub's `html-preview-link` feature](https://github.com/refined-github/refined-github/blob/main/source/features/html-preview-link.tsx)
 
-It is manually deployed to https://refined-github-html-preview.kidonng.workers.dev.
+It is manually deployed to `https://refined-github-html-preview.kidonng.workers.dev`.
+
+Example URL:
+
+> https://refined-github-html-preview.kidonng.workers.dev/spite/explore-with-me/raw/refs/heads/master/index.html
