@@ -56,8 +56,15 @@ export default {
 
     // Allow embedding
     headers.set("x-frame-options", "sameorigin");
-    // Disable CSP
-    headers.delete("content-security-policy");
+    // Restrict CSP: scripts run freely (sandboxed, opaque origin), but lock framing
+    headers.set(
+      "content-security-policy",
+      "script-src * 'unsafe-inline' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src *; connect-src *; frame-ancestors 'self'",
+    );
+    // Strip any cookies GitHub might set
+    headers.delete("set-cookie");
+    // Prevent MIME sniffing
+    headers.set("x-content-type-options", "nosniff");
     // Disallow crawling
     headers.set("x-robots-tag", "none");
 
