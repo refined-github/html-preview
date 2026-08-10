@@ -1,7 +1,7 @@
 import Shell from "./shell.html" with { type: "text" };
 
 const ShellPattern = new URLPattern({
-  pathname: "/:user/:repo/raw/:path(.+)",
+  pathname: "/:user/:repo/(?:raw|blob)/:path(.+)",
 });
 const RenderPattern = new URLPattern({
   pathname: "/_render/:user/:repo/raw/:path(.+)",
