@@ -2,101 +2,142 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/icon.png">
-    <title>Refined GitHub HTML Preview</title>
-
+    <title>HTML Preview</title>
     <style>
-      * {
-        box-sizing: border-box;
+      :root {
+        --bg: #ffffff;
+        --panel: #f6f7f9;
+        --border: #dde1e6;
+        --text: #1f2328;
+        --muted: #59636e;
+        --accent: #0969da;
+        --stripe-a: #f2cb4e;
+        --stripe-b: #1f2328;
+        --sans: -apple-system, "Inter", "Segoe UI", sans-serif;
+        --mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
       }
 
       body {
-        font-family: sans-serif;
-        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hazard {
+        height: 4px;
+        flex-shrink: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--stripe-a) 0 10px,
+          var(--stripe-b) 10px 20px
+        );
+      }
+
+      .bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 0.35rem;
+        column-gap: 0.9rem;
+        padding: 3rem 1rem;
+        background: var(--panel);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.85rem;
+      }
+
+      .brand {
+        font-weight: 700;
+        color: var(--text);
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .brand:hover { color: var(--accent); }
+
+      .path {
+        font-family: var(--mono);
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-decoration: none;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .path:hover { color: var(--accent); }
+
+      .spacer {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .notice {
+        color: var(--muted);
+        font-size: 0.78rem;
+        flex-shrink: 0;
       }
 
       main {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        height: 100vh;
-        padding: 0.5rem;
-      }
-
-      header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-
-        div:first-child {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        img {
-          width: 4rem;
-          height: 4rem;
-        }
-
-        @media (width < 768px) {
-          flex-direction: column;
-          gap: 0;
-
-          img {
-            width: 2rem;
-            height: 2rem;
-          }
-
-          h1 {
-            margin: 0;
-          }
-
-          p {
-            margin: 0.5rem 0;
-          }
-        }
+        flex: 1;
+        min-height: 0;
+        padding: 0.75rem;
       }
 
       iframe {
-        flex-grow: 1;
-        border: 1px solid gray;
-        border-radius: 0.5rem;
+        width: 100%;
+        height: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+      }
+
+      @media (width < 768px) {
+        .bar { font-size: 0.78rem; }
+        .spacer { flex-basis: 100%; height: 0; }
+        .path { max-width: 100%; white-space: normal; word-break: break-all; }
+        .notice { font-size: 0.72rem; }
       }
     </style>
   </head>
 
   <body>
+    <div class="hazard"></div>
+    <div class="bar">
+      <a class="brand" href="/" target="_blank" rel="noopener">This is a page previewed by a user of Refined GitHub.</a>
+      <a class="path" id="path" href="#" target="_blank" rel="noopener" hidden></a>
+      <span class="spacer"></span>
+      <span class="notice">Hosted on GitHub. Never enter passwords or personal info</span>
+    </div>
+
     <main>
-      <header>
-        <div>
-          <img src="/icon.png" alt="Refined GitHub icon">
-          <h1>Refined GitHub HTML Preview</h1>
-        </div>
-
-        <div>
-          <p>
-            <strong>
-              ⚠️ Do not enter passwords or personal information on this page. ⚠️
-            </strong>
-          </p>
-          <p>
-            This is a page previewed by a user of
-            <a
-              href="https://github.com/refined-github/refined-github"
-            >Refined GitHub</a>.
-          </p>
-        </div>
-      </header>
-
       <iframe
         src="{{target}}"
         sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads allow-orientation-lock allow-pointer-lock allow-presentation"
         referrerpolicy="strict-origin"
       ></iframe>
     </main>
+
+    <script>
+      const [, user, repo, , ...path] = location.pathname.split("/");
+      const filePath = path.join("/");
+      const pathEl = document.getElementById("path");
+
+      if (user && repo && filePath) {
+        pathEl.textContent = `${user}/${repo}/${filePath}`;
+        pathEl.href = `https://github.com/${user}/${repo}/blob/${filePath}`;
+        pathEl.hidden = false;
+      }
+    </script>
   </body>
 </html>
