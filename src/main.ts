@@ -1,4 +1,5 @@
 import Shell from "./shell.html" with { type: "text" };
+import Index from "./index.html" with { type: "text" };
 
 const ShellPattern = new URLPattern({
   pathname: "/:user/:repo/(?:raw|blob)/:path(.+)",
@@ -13,9 +14,9 @@ export default {
     const { pathname } = new URL(url);
 
     if (pathname === "/") {
-      return Response.redirect(
-        "https://github.com/refined-github/html-preview",
-      );
+      return new Response(Index, {
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
     }
 
     if (ShellPattern.test(url)) {

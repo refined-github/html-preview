@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/icon.png">
+    <title>HTML Preview — Refined GitHub</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #f6f7f9;
+        --border: #dde1e6;
+        --text: #1f2328;
+        --muted: #59636e;
+        --accent: #0969da;
+        --stripe-a: #f2cb4e;
+        --stripe-b: #1f2328;
+        --sans: -apple-system, "Inter", "Segoe UI", sans-serif;
+        --mono: ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hazard {
+        height: 4px;
+        flex-shrink: 0;
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--stripe-a) 0 10px,
+          var(--stripe-b) 10px 20px
+        );
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+        margin: 0;
+      }
+
+      p {
+        color: var(--muted);
+        margin: 0;
+        max-width: 34rem;
+        line-height: 1.5;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        max-width: 34rem;
+        width: 100%;
+        text-align: left;
+      }
+
+      .step-label {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      .url {
+        font-family: var(--mono);
+        font-size: 0.82rem;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.7rem 0.9rem;
+        word-break: break-all;
+      }
+
+      .url a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .url a:hover { color: var(--accent); }
+
+      .url.result a {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      footer {
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      footer a:hover { text-decoration: underline; }
+    </style>
+  </head>
+
+  <body>
+    <div class="hazard"></div>
+
+    <main>
+      <h1>Refined GitHub HTML Preview</h1>
+      <p>Replace <code>github.com</code> in any HTML file's URL with this site's domain to render it, sandboxed.</p>
+
+      <div class="steps">
+        <span class="step-label">github.com URL</span>
+        <div class="url">
+          <a href="https://github.com/spite/explore-with-me/blob/refs/heads/master/index.html" target="_blank" rel="noopener">
+            https://github.com/spite/explore-with-me/blob/refs/heads/master/index.html
+          </a>
+        </div>
+
+        <span class="step-label">becomes</span>
+        <div class="url result">
+          <a href="/spite/explore-with-me/raw/refs/heads/master/index.html">
+            /spite/explore-with-me/raw/refs/heads/master/index.html
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <a href="https://github.com/refined-github/html-preview" target="_blank" rel="noopener">
+        View source
+      </a>
+    </footer>
+  </body>
+</html>
